@@ -14,7 +14,4 @@ class Shop {
     render() {
         
     }
-    click(evt) {
-
-    }
 }

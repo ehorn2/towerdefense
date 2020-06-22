@@ -4,6 +4,7 @@ let map
 let loops = {}
 let towers = []
 let enemies = []
+let buttons = []
 let shop
 let lives = 100
 
@@ -58,6 +59,7 @@ const render = function() {
     // Draw Entities
     enemies.forEach(i => i.render())
     towers.forEach(i => i.render())
+    buttons.forEach(i => i.render())
     
     // Draw Shop
     shop.render()
@@ -71,6 +73,11 @@ const getCanvasContext = function() {
 const addEvents = function() {
     document.addEventListener('mouseup', evt => {
         console.log(evt)
+        buttons.forEach(i => {
+            if (evt.x > i.x && evt.x < i.x + i.w && evt.y > i.y && evt.y < i.y + i.h) {
+                i.click()
+            }
+        })
         if (evt.x <= 900) {
             towers.forEach(i => {
                 i.highlight = false
