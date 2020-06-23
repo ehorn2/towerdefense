@@ -1,16 +1,25 @@
 class Button {
-    constructor(x, y, w, h, text) {
-        this.x = x
-        this.y = y
-        this.w = w
-        this.h = h
+    constructor(obj) {
+        this.x = obj.x
+        this.y = obj.y
+        this.w = obj.w
+        this.h = obj.h
+        this.color = obj.color
+        this.pressedColor = obj.pressedColor
+        this.inactive = obj.inactive
+        this.inactiveColor = obj.inactiveColor
+        this.inactiveCheck = obj.inactiveCheck
+        this.text = obj.text
+        this.call = obj.call
         this.pressed = false
     }
 
     render() {
+        this.inactiveCheck()
         ctx.strokeStyle = "#111111"
-        if (this.pressed) ctx.fillStyle = "#6655DD"
-        else ctx.fillStyle = "#8877EE"
+        if (this.inactive) ctx.fillStyle = this.inactiveColor
+        else if (!this.pressed) ctx.fillStyle = this.color
+        else ctx.fillStyle = this.pressedColor
         ctx.translate(this.x, this.y)
         ctx.strokeRect(0,0,this.w,this.h)
         ctx.fillRect(0,0,this.w,this.h)
@@ -18,18 +27,15 @@ class Button {
     }
 
     click() {
-        if (this.pressed) this.pressed = false
-        else this.pressed = true
-        if (this.action) this.action()
+        if (!this.inactive) this.call()
     }
 }
 
-class ShopButton extends Button {
-    constructor(x, y, w, h, text, id) {
-        super(x, y, w, h, text)
-        this.id = id
-    }
-    action() {
-        console.log(this.id)
+const buttonsControl = {
+    "startRound":{
+
+    },
+    "pauseRound":{
+
     }
 }

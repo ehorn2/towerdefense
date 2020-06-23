@@ -6,6 +6,9 @@ let towers = []
 let enemies = []
 let buttons = []
 let shop
+let mousex
+let mousey
+let targetButton
 let lives = 100
 
 const bodyLoaded = async function() {
@@ -15,6 +18,7 @@ const bodyLoaded = async function() {
     map = new Map()
     shop = new Shop()
     await map.loadMap('breezy.json')
+    shop.loadButtons()
     continueGame()
 }
 
@@ -71,20 +75,40 @@ const getCanvasContext = function() {
 }
 
 const addEvents = function() {
-    document.addEventListener('mouseup', evt => {
-        console.log(evt)
+    document.addEventListener('mousedown', evt => {
         buttons.forEach(i => {
             if (evt.x > i.x && evt.x < i.x + i.w && evt.y > i.y && evt.y < i.y + i.h) {
+                targetButton = i
+                i.pressed = true
+            }
+        })
+    })
+
+    document.addEventListener('mouseup', evt => {
+        buttons.forEach(i => {
+            if (evt.x > i.x && evt.x < i.x + i.w && evt.y > i.y && evt.y < i.y + i.h && buttons.indexOf(targetButton) == buttons.indexOf(i)) {
                 i.click()
             }
         })
+        if (targetButton) buttons[buttons.indexOf(targetButton)].pressed = false
+        targetButton = undefined
+
         if (evt.x <= 900) {
-            towers.forEach(i => {
-                i.highlight = false
-                if (Math.sqrt((i.pos.x - evt.x) * (i.pos.x - evt.x) + (i.pos.y - evt.y) * (i.pos.y - evt.y)) <= 20) {
-                    i.highlight = true
-                }
-            })
-        } else shop.click(evt)
+            if (shop.placing) {
+                shop.place(evt)
+            } else {
+                towers.forEach(i => {
+                    i.highlight = false
+                    if (Math.sqrt((i.pos.x - evt.x) * (i.pos.x - evt.x) + (i.pos.y - evt.y) * (i.pos.y - evt.y)) <= 20) {
+                        i.highlight = true
+                    }
+                })
+            }
+        }
+    })
+
+    document.addEventListener('mousemove', evt => {
+        mousex = evt.x
+        mousey = evt.y
     })
 }

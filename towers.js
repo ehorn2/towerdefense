@@ -68,6 +68,14 @@ class Lava extends Tower {
         ctx.translate(this.pos.x, this.pos.y)
         ctx.rotate(this.facing)
         ctx.strokeRect(-8,-8,16,16)
+        if (this.highlight) {
+            ctx.globalAlpha = .3
+            ctx.fillStyle = "#222222"
+            ctx.beginPath()
+            ctx.arc(0, 0, this.range, 0, Math.PI * 2)
+            ctx.fill()
+            ctx.globalAlpha = 1
+        }
         ctx.resetTransform()
     }
 }
