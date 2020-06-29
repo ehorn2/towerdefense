@@ -20,7 +20,12 @@ class Shop {
     }
 
     render() {
-        
+        ctx.textAlign = "center"
+        ctx.font = "600 24px monospace"
+        ctx.fillStyle = "#449944"
+        ctx.fillText(this.money, 995, 40)
+        ctx.fillStyle = "#994444"
+        ctx.fillText(lives, 1105, 40)
     }
 
     buy(id) {
@@ -71,9 +76,9 @@ class Shop {
 const buttonsShop = {
     "basic":{
         x:950,
-        y:150,
+        y:80,
         w:90,
-        h:60,
+        h:40,
         text:"Basic : 250",
         color:"#6666BB",
         pressedColor:"#444499",
@@ -89,9 +94,9 @@ const buttonsShop = {
     },
     "lava":{
         x:1060,
-        y:150,
+        y:80,
         w:90,
-        h:60,
+        h:40,
         text:"Lava : 600",
         color:"#6666BB",
         pressedColor:"#444499",

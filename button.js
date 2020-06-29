@@ -23,6 +23,10 @@ class Button {
         ctx.translate(this.x, this.y)
         ctx.strokeRect(0,0,this.w,this.h)
         ctx.fillRect(0,0,this.w,this.h)
+        ctx.fillStyle = "#000000"
+        ctx.textAlign = "center"
+        ctx.font = "12px monospace"
+        ctx.fillText(this.text, this.w / 2, this.h / 2)
         ctx.resetTransform()
     }
 
@@ -33,9 +37,21 @@ class Button {
 
 const buttonsControl = {
     "startRound":{
-
-    },
-    "pauseRound":{
-
+        x:950,
+        y:80,
+        w:90,
+        h:40,
+        text:"Basic : 250",
+        color:"#6666BB",
+        pressedColor:"#444499",
+        inactive:false,
+        inactiveColor:"#994444",
+        inactiveCheck:function(){
+            if (shop.money < shop.towerInfo.basic.price) this.inactive = true
+            else this.inactive = false
+        },
+        call:function(){
+            wave.begin()
+        }
     }
 }

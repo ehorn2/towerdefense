@@ -29,6 +29,7 @@ class Map {
         this.nodes = data.nodes
         this.title = data.title
         this.drawData = data.drawData
+        this.waves = data.waves
         console.log('Map Parsed Successfully!', map)
     }
 

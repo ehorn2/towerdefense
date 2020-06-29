@@ -1,11 +1,12 @@
 let canvas
 let ctx
 let map
+let shop
+let wave
 let loops = {}
 let towers = []
 let enemies = []
 let buttons = []
-let shop
 let mousex
 let mousey
 let targetButton
@@ -17,6 +18,7 @@ const bodyLoaded = async function() {
     addEvents()
     map = new Map()
     shop = new Shop()
+    wave = new Wave()
     await map.loadMap('breezy.json')
     shop.loadButtons()
     continueGame()
