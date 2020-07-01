@@ -1,14 +1,14 @@
 class Shop {
     constructor() {
         this.placing = false
-        this.money = 500
+        this.money = 50
         this.dummy
         this.towerInfo = {
             basic: {
-                price: 250
+                price: 10
             },
             lava: {
-                price: 600
+                price: 120
             }
         }
     }
@@ -41,6 +41,7 @@ class Shop {
                     this.dummy = new Lava()
                     break;
             }
+            this.dummy.highlight = true
             loops.tracker = setInterval(() => {
                 shop.dummy.pos.x = mousex
                 shop.dummy.pos.y = mousey
@@ -76,10 +77,10 @@ class Shop {
 const buttonsShop = {
     "basic":{
         x:950,
-        y:80,
+        y:100,
         w:90,
         h:40,
-        text:"Basic : 250",
+        text:"Basic : 10",
         color:"#6666BB",
         pressedColor:"#444499",
         inactive:false,
@@ -94,10 +95,10 @@ const buttonsShop = {
     },
     "lava":{
         x:1060,
-        y:80,
+        y:100,
         w:90,
         h:40,
-        text:"Lava : 600",
+        text:"Lava : 120",
         color:"#6666BB",
         pressedColor:"#444499",
         inactive:false,

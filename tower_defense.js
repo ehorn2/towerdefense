@@ -21,6 +21,9 @@ const bodyLoaded = async function() {
     wave = new Wave()
     await map.loadMap('breezy.json')
     shop.loadButtons()
+    for (let i in buttonsControl) {
+        buttons.push(new Button(buttonsControl[i]))
+    }
     continueGame()
 }
 
@@ -45,6 +48,9 @@ const tick = function() {
     for(i = 0; i < towers.length; i++) {
         if (towers[i].remove) towers.splice(i, 1)
     }
+
+    // Spawn Enemies
+    if (wave.playing) wave.tick()
 
     render()
 }

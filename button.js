@@ -38,20 +38,19 @@ class Button {
 const buttonsControl = {
     "startRound":{
         x:950,
-        y:80,
-        w:90,
-        h:40,
-        text:"Basic : 250",
-        color:"#6666BB",
-        pressedColor:"#444499",
+        y:60,
+        w:200,
+        h:25,
+        text:"Begin",
+        color:"#66BB66",
+        pressedColor:"#449944",
         inactive:false,
         inactiveColor:"#994444",
         inactiveCheck:function(){
-            if (shop.money < shop.towerInfo.basic.price) this.inactive = true
-            else this.inactive = false
         },
         call:function(){
             wave.begin()
+            this.inactive = true
         }
     }
 }
